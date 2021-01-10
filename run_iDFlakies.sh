@@ -12,7 +12,7 @@ cd /home/$SCRIPT_USERNAME
 # This script is run for single experiment (one project)
 # Should only be invoked by the run_experiment.sh script
 
-if [[ $1 == "" ]] || [[ $2 == "" ]] || [[ $3 == "" ] || [[ $4 == "" ] || [[ $5 == "" ]]; then
+if [[ $1 == "" ]] || [[ $2 == "" ]] || [[ $3 == "" ]] || [[ $4 == "" ]] || [[ $5 == "" ]]; then
     echo "arg1 - GitHub SLUG"
     echo "arg2 - SHA of the SLUG"
     echo "arg3 - Module of the SLUG"
