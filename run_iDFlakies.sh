@@ -78,7 +78,7 @@ fi
 
 # Incorporate tooling into the project, using Java XML parsing
 cd "/home/$SCRIPT_USERNAME/${slug}"
-sh /home/$SCRIPT_USERNAME/$TOOL_REPO/pom-modify/modify-project.sh . 
+sh /home/$SCRIPT_USERNAME/$TOOL_REPO/modify-project.sh . 
 
 # Run the plugin, get module test times
 echo "*******************iDFLAKIES************************"
