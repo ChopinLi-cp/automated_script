@@ -91,7 +91,7 @@ modifiedslug=$(echo ${slug} | sed 's;/;.;' | tr '[:upper:]' '[:lower:]')
 timeout ${timeout}s mvn testrunner:testplugin ${MVNOPTIONS} ${IDF_OPTIONS} -pl $module -Ddetector.detector_type=original |& tee module_test_time.log
 
 # Gather the results, put them up top
-/home/$SCRIPT_USERNAME/gather-results $(pwd) ${RESULTSDIR}
+# /home/$SCRIPT_USERNAME/gather-results $(pwd) ${RESULTSDIR}
 mv *.log ${RESULTSDIR}/
 
 echo "*******************iDFLAKIES************************"
