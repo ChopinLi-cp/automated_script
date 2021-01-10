@@ -36,6 +36,10 @@ echo $timeout
 RESULTSDIR=/home/$SCRIPT_USERNAME/iFixFlakies_output/
 mkdir -p ${RESULTSDIR}
 
+modifiedslug=$(echo ${slug} | sed 's;/;.;' | tr '[:upper:]' '[:lower:]')
+short_sha=${sha:0:7}
+modifiedslug_with_sha="${modifiedslug}-${short_sha}"
+
 # Set global mvn options for skipping things
 MVNOPTIONS="-Ddependency-check.skip=true -Dgpg.skip=true -DfailIfNoTests=false -Dskip.installnodenpm -Dskip.npm -Dskip.yarn -Dlicense.skip -Dcheckstyle.skip -Drat.skip -Denforcer.skip -Danimal.sniffer.skip -Dmaven.javadoc.skip -Dfindbugs.skip -Dwarbucks.skip -Dmodernizer.skip -Dimpsort.skip -Dmdep.analyze.skip -Dpgpverify.skip -Dxml.skip -Dcobertura.skip=true -Dfindbugs.skip=true"
 IDF_OPTIONS="-Ddt.detector.original_order.all_must_pass=false -Ddetector.timeout=${timeout} -Ddt.randomize.rounds=${rounds} -fn -B -e -Ddt.cache.absolute.path=/home/lichengpeng/test/all-output/${modifiedslug}_output"
