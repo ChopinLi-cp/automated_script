@@ -81,7 +81,7 @@ cd "/home/$SCRIPT_USERNAME/${slug}"
 sh /home/$SCRIPT_USERNAME/$TOOL_REPO/modify-project.sh .
 
 # Run the plugin, get module test times
-echo "*******************iDFLAKIES************************"
+echo "*******************iFIXFLAKIES************************"
 echo "Running testplugin for getting module test time"
 date
 
