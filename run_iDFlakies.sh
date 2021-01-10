@@ -40,7 +40,7 @@ mkdir -p ${RESULTSDIR}
 MVNOPTIONS="-Ddependency-check.skip=true -Dgpg.skip=true -DfailIfNoTests=false -Dskip.installnodenpm -Dskip.npm -Dskip.yarn -Dlicense.skip -Dcheckstyle.skip -Drat.skip -Denforcer.skip -Danimal.sniffer.skip -Dmaven.javadoc.skip -Dfindbugs.skip -Dwarbucks.skip -Dmodernizer.skip -Dimpsort.skip -Dmdep.analyze.skip -Dpgpverify.skip -Dxml.skip -Dcobertura.skip=true -Dfindbugs.skip=true"
 IDF_OPTIONS="-Ddt.detector.original_order.all_must_pass=false -Ddetector.timeout=${timeout} -Ddt.randomize.rounds=${rounds} -fn -B -e -Ddt.cache.absolute.path=/home/lichengpeng/test/all-output/${modifiedslug}_output"
 
-# iDFlakiesVersion=1.2.0-SNAPSHOT
+iDFlakiesVersion=1.2.0-SNAPSHOT
 
 # Setup prolog stuff
 # cd /home/$SCRIPT_USERNAME & ./setup
@@ -78,7 +78,7 @@ fi
 
 # Incorporate tooling into the project, using Java XML parsing
 cd "/home/$SCRIPT_USERNAME/${slug}"
-sh /home/$SCRIPT_USERNAME/$TOOL_REPO/modify-project.sh . 
+sh /home/$SCRIPT_USERNAME/$TOOL_REPO/modify-project.sh . $iDFlakiesVersion
 
 # Run the plugin, get module test times
 echo "*******************iDFLAKIES************************"
