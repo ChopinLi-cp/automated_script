@@ -61,7 +61,7 @@ echo "Location of module: $module"
 # echo "================Installing the project"
 bash /home/$SCRIPT_USERNAME/install-project.sh "$slug" "$MVNOPTIONS" "$USER" "$module" "$sha" "$dir" "$fullTestName" "${RESULTSDIR}"
 ret=${PIPESTATUS[0]}
-mv mvn-install.log ${RESULTSDIR}
+mv mvn-install.log ${RESULTSDIR}/${modifiedslug_with_sha}-mvn-install.log
 if [[ $ret != 0 ]]; then
     # mvn install does not compile - return 0
     echo "Compilation failed. Actual: $ret"
@@ -88,7 +88,7 @@ date
 modifiedslug=$(echo ${slug} | sed 's;/;.;' | tr '[:upper:]' '[:lower:]')
 
 # Optional timeout... In practice our tools really shouldn't need 1hr to parse a project's surefire reports.
-timeout ${timeout}s mvn testrunner:testplugin |& tee module_test_time.log
+timeout ${timeout}s mvn testrunner:testplugin |& tee ${modifiedslug_with_sha}-module_test_time.log
 
 # Gather the results, put them up top
 # /home/$SCRIPT_USERNAME/gather-results $(pwd) ${RESULTSDIR}

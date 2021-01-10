@@ -36,6 +36,10 @@ echo $timeout
 RESULTSDIR=/home/$SCRIPT_USERNAME/output/
 mkdir -p ${RESULTSDIR}
 
+modifiedslug=$(echo ${slug} | sed 's;/;.;' | tr '[:upper:]' '[:lower:]')
+short_sha=${sha:0:7}
+modifiedslug_with_sha="${modifiedslug}-${short_sha}"
+
 # Set global mvn options for skipping things
 MVNOPTIONS="-Ddependency-check.skip=true -Dgpg.skip=true -DfailIfNoTests=false -Dskip.installnodenpm -Dskip.npm -Dskip.yarn -Dlicense.skip -Dcheckstyle.skip -Drat.skip -Denforcer.skip -Danimal.sniffer.skip -Dmaven.javadoc.skip -Dfindbugs.skip -Dwarbucks.skip -Dmodernizer.skip -Dimpsort.skip -Dmdep.analyze.skip -Dpgpverify.skip -Dxml.skip -Dcobertura.skip=true -Dfindbugs.skip=true"
 IDF_OPTIONS="-Ddt.detector.original_order.all_must_pass=false -Ddetector.timeout=${timeout} -Ddt.randomize.rounds=${rounds} -fn -B -e -Ddt.cache.absolute.path=/home/lichengpeng/test/all-output/${modifiedslug}_output"
@@ -61,7 +65,7 @@ echo "Location of module: $module"
 # echo "================Installing the project"
 bash /home/$SCRIPT_USERNAME/install-project.sh "$slug" "$MVNOPTIONS" "$USER" "$module" "$sha" "$dir" "$fullTestName" "${RESULTSDIR}"
 ret=${PIPESTATUS[0]}
-mv mvn-install.log ${RESULTSDIR}
+mv mvn-install.log ${RESULTSDIR}/${modifiedslug_with_sha}-mvn-install.log
 if [[ $ret != 0 ]]; then
     # mvn install does not compile - return 0
     echo "Compilation failed. Actual: $ret"
@@ -88,7 +92,7 @@ date
 modifiedslug=$(echo ${slug} | sed 's;/;.;' | tr '[:upper:]' '[:lower:]')
 
 # Optional timeout... In practice our tools really shouldn't need 1hr to parse a project's surefire reports.
-timeout ${timeout}s mvn testrunner:testplugin -Ddetector.detector_type=random-class-method -Ddt.randomize.rounds=10 -Ddt.detector.original_order.all_must_pass=false |& tee module_test_time.log
+timeout ${timeout}s mvn testrunner:testplugin -Ddetector.detector_type=random-class-method -Ddt.randomize.rounds=10 -Ddt.detector.original_order.all_must_pass=false |& tee ${modifiedslug_with_sha}-module_test_time.log
 
 # Gather the results, put them up top
 # /home/$SCRIPT_USERNAME/gather-results $(pwd) ${RESULTSDIR}
