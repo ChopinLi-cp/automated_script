@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPT_USERNAME="lichengpeng/test/scripts"
+SCRIPT_USERNAME="lichengpeng/test/automated_script"
 TOOL_REPO="iDFlakies"
 
 git rev-parse HEAD
