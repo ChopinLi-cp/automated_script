@@ -27,6 +27,12 @@ module=$3
 rounds=$4
 timeout=$5
 
+echo $slug
+echo $sha
+echo $module
+echo $rounds
+echo $timeout
+
 RESULTSDIR=/home/$SCRIPT_USERNAME/output/
 mkdir -p ${RESULTSDIR}
 
@@ -39,6 +45,7 @@ iDFlakiesVersion=1.2.0-SNAPSHOT
 # Setup prolog stuff
 # cd /home/$SCRIPT_USERNAME & ./setup
 
+echo $pwd
 # Clone the testing project
 bash /home/$SCRIPT_USERNAME/clone-project.sh "$slug" "$sha"
 
