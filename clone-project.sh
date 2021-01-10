@@ -1,3 +1,6 @@
+slug=$1
+sha=$2
+
 if [[ ! -d "$slug" ]]; then
     echo "================Cloning the project"
     git clone https://github.com/$slug $slug
