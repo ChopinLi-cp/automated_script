@@ -48,6 +48,15 @@ iDFlakiesVersion=1.2.0-SNAPSHOT
 echo $(pwd)
 # Clone the testing project
 bash /home/$SCRIPT_USERNAME/clone-project.sh "$slug" "$sha"
+cd /home/$SCRIPT_USERNAME/$slug
+
+if [[ -z $module ]]; then
+    echo "================ Missing module. Exiting now!"
+    exit 1
+else
+    echo "Module passed in from csv."
+fi
+echo "Location of module: $module"
 
 # echo "================Installing the project"
 bash /home/$SCRIPT_USERNAME/install-project.sh "$slug" "$MVNOPTIONS" "$USER" "$module" "$sha" "$dir" "$fullTestName" "${RESULTSDIR}"
