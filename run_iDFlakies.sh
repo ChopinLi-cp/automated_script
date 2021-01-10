@@ -88,7 +88,7 @@ date
 modifiedslug=$(echo ${slug} | sed 's;/;.;' | tr '[:upper:]' '[:lower:]')
 
 # Optional timeout... In practice our tools really shouldn't need 1hr to parse a project's surefire reports.
-timeout ${timeout}s mvn testrunner:testplugin ${MVNOPTIONS} ${IDF_OPTIONS} -pl $module -Ddetector.detector_type=original |& tee module_test_time.log
+timeout ${timeout}s mvn testrunner:testplugin -Ddetector.detector_type=random-class-method -Ddt.randomize.rounds=10 -Ddt.detector.original_order.all_must_pass=false |& tee module_test_time.log
 
 # Gather the results, put them up top
 # /home/$SCRIPT_USERNAME/gather-results $(pwd) ${RESULTSDIR}
