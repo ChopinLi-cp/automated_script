@@ -45,7 +45,7 @@ iDFlakiesVersion=1.2.0-SNAPSHOT
 # Setup prolog stuff
 # cd /home/$SCRIPT_USERNAME & ./setup
 
-echo $pwd
+echo $(pwd)
 # Clone the testing project
 bash /home/$SCRIPT_USERNAME/clone-project.sh "$slug" "$sha"
 
