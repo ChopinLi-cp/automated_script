@@ -37,7 +37,7 @@ IDF_OPTIONS="-Ddt.detector.original_order.all_must_pass=false -Ddetector.timeout
 iDFlakiesVersion=1.2.0-SNAPSHOT
 
 # Setup prolog stuff
-/home/$SCRIPT_USERNAME/setup
+cd /home/$SCRIPT_USERNAME & ./setup
 
 # Clone the testing project
 bash /home/$SCRIPT_USERNAME/clone-project.sh "$slug" "$sha"
