@@ -14,21 +14,18 @@ mkdir -p ${RESULTSDIR}
 # This script is run for single experiment (one project)
 # Should only be invoked by the run_iFixFlakies.sh script
 
-if [[ $1 == "" ]] || [[ $2 == "" ]] || [[ $3 == "" ]] || [[ $4 == "" ]] || [[ $5 == "" ]]; then
+if [[ $1 == "" ]] || [[ $2 == "" ]] || [[ $3 == "" ]] || [[ $4 == "" ]]; then
     echo "arg1 - GitHub SLUG"
     echo "arg2 - SHA of the SLUG"
     echo "arg3 - Module of the SLUG"
-    echo "arg4 - Number of rounds"
-    echo "arg5 - Timeout in seconds"
+    echo "arg4 - Timeout in seconds"
     exit
 fi
 
 slug=$1
 sha=$2
 module=$3
-rounds=$4
-timeout=$5
-
+timeout=$4
 
 modifiedslug=$(echo ${slug} | sed 's;/;.;' | tr '[:upper:]' '[:lower:]')
 short_sha=${sha:0:7}
@@ -36,7 +33,6 @@ modifiedslug_with_sha="${modifiedslug}-${short_sha}"
 
 # Set global mvn options for skipping things
 MVNOPTIONS="-Ddependency-check.skip=true -Dgpg.skip=true -DfailIfNoTests=false -Dskip.installnodenpm -Dskip.npm -Dskip.yarn -Dlicense.skip -Dcheckstyle.skip -Drat.skip -Denforcer.skip -Danimal.sniffer.skip -Dmaven.javadoc.skip -Dfindbugs.skip -Dwarbucks.skip -Dmodernizer.skip -Dimpsort.skip -Dmdep.analyze.skip -Dpgpverify.skip -Dxml.skip -Dcobertura.skip=true -Dfindbugs.skip=true"
-IDF_OPTIONS="-Ddt.detector.original_order.all_must_pass=false -Ddetector.timeout=${timeout} -Ddt.randomize.rounds=${rounds} -fn -B -e -Ddt.cache.absolute.path=/home/lichengpeng/test/all-output/${modifiedslug}_output"
 
 # Clone the testing project
 bash $SCRIPTDIR/clone-project.sh "$slug" "$sha"
@@ -51,7 +47,7 @@ fi
 echo "Location of module: $module"
 
 # echo "================Installing the project"
-bash $SCRIPTDIR/install-project.sh "$slug" "$MVNOPTIONS" "$USER" "$module" "$sha" "$dir" "$fullTestName" "${RESULTSDIR}"
+bash $SCRIPTDIR/install-project.sh "$slug" "$MVNOPTIONS" "$module"
 ret=${PIPESTATUS[0]}
 
 mv mvn-install.log ${RESULTSDIR}/${modifiedslug_with_sha}-mvn-install.log
