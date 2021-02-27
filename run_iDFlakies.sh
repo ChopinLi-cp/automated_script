@@ -60,7 +60,7 @@ fi
 
 # Incorporate tooling into the project, using Java XML parsing
 cd $SCRIPT_USERNAME/${slug}
-sh $SCRIPT_USERNAME/$TOOL_REPO/modify-project.sh .
+sh $SCRIPT_USERNAME/$TOOL_REPO/modify-project.sh . 1.2.0-SNAPSHOT
 
 # Run the plugin, get module test times
 echo "*******************iDFLAKIES************************"
