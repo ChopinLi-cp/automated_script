@@ -47,7 +47,7 @@ fi
 echo "Location of module: $module"
 
 # echo "================Installing the project"
-bash $SCRIPT_USERNAME/install-project.sh "$slug" "$module"
+bash $RESULTSDIR/install-project.sh "$slug" "$module"
 ret=${PIPESTATUS[0]}
 
 mv mvn-install.log ${RESULTSDIR}/${modifiedslug_with_sha}-mvn-install.log
@@ -59,10 +59,10 @@ if [[ $ret != 0 ]]; then
 fi
 
 # Incorporate tooling into the project, using Java XML parsing
-cd $SCRIPT_USERNAME/${slug}
-sh $SCRIPT_USERNAME/$TOOL_REPO/modify-project.sh . 1.2.0-SNAPSHOT
+cd $RESULTSDIR/${slug}
+sh $RESULTSDIR/$TOOL_REPO/modify-project.sh . 1.2.0-SNAPSHOT
 
-echo $SCRIPT_USERNAME
+echo $RESULTSDIR
 echo $TOOL_REPO
 
 # Run the plugin, get module test times
