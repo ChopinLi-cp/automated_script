@@ -37,7 +37,7 @@ public class PomFile {
     private static String ARTIFACT_ID = "ifixflakies";
     private static String CONFIGURATION_CLASS = "edu.illinois.cs.dt.tools.fixer.CleanerFixerPlugin";
     private static String ARTIFACT_VERSION = "1.0.0-SNAPSHOT";
-    private static String TESTRUNNER_ARTIFACT_VERSION = "1.0";
+    private static String TESTRUNNER_ARTIFACT_VERSION = "1.2";
 
     public PomFile(String pom) {
         this.pom = pom;
