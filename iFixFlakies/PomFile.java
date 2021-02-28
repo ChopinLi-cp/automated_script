@@ -201,7 +201,7 @@ public class PomFile {
             {
                 Node artifactId = doc.createElement("artifactId");
                 artifactId.setTextContent("testrunner-maven-plugin");
-                plugin.appendChild(artifactId);
+                plugin.appendChild("1.2.0");
             }
             {
                 Node version = doc.createElement("version");
