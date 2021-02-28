@@ -3,7 +3,7 @@
 ARTIFACT_ID="idflakies"
 ARTIFACT_VERSION="1.0.2"
 CONFIGURATION_CLASS="edu.illinois.cs.dt.tools.detection.DetectorPlugin"
-TESTRUNNER_ARTIFACT_VERSION="1.0"
+TESTRUNNER_ARTIFACT_VERSION="1.2"
 
 if [[ $1 == "" ]]; then
     echo "arg1 - the path to the project, where high-level pom.xml is"
