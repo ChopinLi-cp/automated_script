@@ -58,6 +58,8 @@ if [[ $ret != 0 ]]; then
     exit 1
 fi
 
+git stash
+
 # Incorporate tooling into the project, using Java XML parsing
 cd $SCRIPTDIR/${slug}
 sh $SCRIPTDIR/$TOOL_REPO/modify-project.sh .
