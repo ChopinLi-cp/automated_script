@@ -2,7 +2,7 @@
 
 ARTIFACT_ID="ifixflakies"
 ARTIFACT_VERSION="1.0.0-SNAPSHOT"
-CONFIGURATION_CLASS="edu.illinois.cs.dt.tools.fixer.CleanerFixerPlugin"
+CONFIGURATION_CLASS="edu.illinois.cs.dt.tools.polluter.PolluterPlugin"
 
 if [[ $1 == "" ]]; then
     echo "arg1 - the path to the project, where high-level pom.xml is"
